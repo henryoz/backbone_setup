@@ -1,0 +1,29 @@
+<!-- Use this file for development, prevents recompilation of vendor files each time. -->
+
+<!doctype html>
+<html class="no-js">
+    <head>
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+    </head>
+    <body>
+
+        <!-- build:js({.tmp,app}) scripts/app.js -->
+        <script src="scripts/prototype.js"></script>
+        <script src="scripts/main.js"></script>
+        <script src="scripts/templates.js"></script>
+        <script src="scripts/model/default.js"></script>
+        <!--  Models go in here... -->
+        <script src="scripts/collection/default.js"></script>
+        <!--  Collections go in here... -->
+        <script src="scripts/view/default.js"></script>
+        <script src="scripts/view/overlays/defaultOverlay.js"></script>
+        <!-- Views here please... -->
+        <!-- endbuild -->
+
+    </body>
+</html>
