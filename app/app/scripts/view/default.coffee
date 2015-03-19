@@ -1,9 +1,11 @@
 # Default set of functionality for views.
 'use strict'
 
-class App.Defaults.View extends Backbone.View
+class AllocationTableApp.Defaults.View extends Backbone.View
 
   initialize: (options) ->
+    if @template
+      @template = JST["app/scripts/templates/#{@template}.ejs"]
     @subViews = []
     @init options
 
@@ -18,8 +20,9 @@ class App.Defaults.View extends Backbone.View
   # Create templateData to pass custom data to the template, by default passes JSON model data.
   render: ->
     @preRender()
-    data = @templateData()
-    @$el.html @template data
+    if @template isnt undefined
+      data = @templateData()
+      @$el.html @template data
     @postRender()
     @el
 
@@ -35,11 +38,15 @@ class App.Defaults.View extends Backbone.View
   postRender: ->
 
   #Creates a sub view entry.
-  createSubView: (viewType, element, options = {}, replace = true) ->
-    view   = new viewType options
+  createSubView: (viewType, element = '', options = {}, replace = true) ->
+    view = new viewType options
     if replace is true then method = 'html' else method = 'append'
-    @$(element)[method] view.render()
+    if element is ''
+      @$el[method] view.render()
+    else
+      @$(element)[method] view.render()
     @subViews.push view
+    view
 
   createOverlay: (viewType, options = {}) ->
     view = new viewType options
@@ -61,7 +68,7 @@ class App.Defaults.View extends Backbone.View
     @subViews = []
 
   addSpinner: (el = '') ->
-    @spinnerView = new App.Blocks.View.SpinnerView()
+    @spinnerView = new AllocationTableApp.Blocks.View.SpinnerView()
     if el is '' then el = @$el else el = @$(el)
     el.html @spinnerView.render()
 
