@@ -7,9 +7,6 @@ class AllocationTableApp.Defaults.View extends Backbone.View
     if @template
       @template = JST["app/scripts/templates/#{@template}.ejs"]
     @subViews = []
-    @init options
-
-  init: (options) ->
 
   # Check if a given method against a view exists.
   isSet: (method) ->
@@ -23,7 +20,6 @@ class AllocationTableApp.Defaults.View extends Backbone.View
     if @template isnt undefined
       data = @templateData()
       @$el.html @template data
-    @postRender()
     @el
 
   chosen: ->
@@ -35,7 +31,6 @@ class AllocationTableApp.Defaults.View extends Backbone.View
 
   #Placeholder, no default functionality.
   preRender: ->
-  postRender: ->
 
   #Creates a sub view entry.
   createSubView: (viewType, element = '', options = {}, replace = true) ->
